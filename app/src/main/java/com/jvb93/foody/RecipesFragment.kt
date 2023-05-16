@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.jvb93.foody.R
+
 
 class RecipesFragment : Fragment() {
     override fun onCreateView(
