@@ -1,4 +1,4 @@
-package com.jvb93.foody
+package com.jvb93.foody.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.jvb93.foody.R
 
 import com.jvb93.foody.databinding.ActivityMainBinding
 
