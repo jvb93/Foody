@@ -11,7 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jvb93.foody.R
 
 import com.jvb93.foody.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController

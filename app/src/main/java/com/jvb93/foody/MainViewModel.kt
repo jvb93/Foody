@@ -4,20 +4,26 @@ import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Parcelable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.jvb93.foody.data.Repository
 import com.jvb93.foody.models.FoodRecipe
 import com.jvb93.foody.util.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val repository: Repository, application: Application): AndroidViewModel(application) {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val repository: Repository,
+    application: Application
+) : AndroidViewModel(application) {
 
     var recipesResponse : MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
-
+    var recyclerViewState: Parcelable? = null
     fun getRecipes(queries: Map<String, String>)  = viewModelScope.launch {
         getRecipesSafeCall(queries)
     }

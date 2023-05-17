@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="result"
-        type="com.jvb93.foody.models.Result" />
+
+        <variable
+            name="result"
+            type="com.jvb93.foody.models.Result" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,6 +41,7 @@
                     android:layout_width="200dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
+                    loadImageFromUrl="@{result.image}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -93,9 +95,9 @@
 
                 <TextView
                     android:id="@+id/heart_textView"
+                    setTextFromInteger="@{result.aggregateLikes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setTextFromInteger="@{result.aggregateLikes}"
                     android:textAlignment="center"
                     android:textColor="@color/red"
                     app:layout_constraintStart_toStartOf="@+id/description_textView"
@@ -103,10 +105,10 @@
 
                 <TextView
                     android:id="@+id/clock_textView"
+                    setTextFromInteger="@{result.readyInMinutes}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    setTextFromInteger="@{result.readyInMinutes}"
                     android:textAlignment="center"
                     android:textColor="@color/yellow"
                     app:layout_constraintStart_toEndOf="@+id/heart_textView"
@@ -125,22 +127,22 @@
 
                 <ImageView
                     android:id="@+id/vegan_imageView"
+                    applyVeganColor="@{result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@+id/vegan_textView"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/vegan_textView"
                     app:layout_constraintTop_toTopOf="@+id/clock_imageView"
-                    applyVeganColor="@{result.vegan}"
                     app:srcCompat="@drawable/vegan" />
 
                 <TextView
                     android:id="@+id/vegan_textView"
+                    applyVeganColor="@{result.vegan}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="Vegan"
-                    applyVeganColor="@{result.vegan}"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/clock_textView"
                     app:layout_constraintTop_toBottomOf="@+id/vegan_imageView" />
