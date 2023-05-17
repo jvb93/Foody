@@ -50,8 +50,20 @@ class RecipesFragment : Fragment() {
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         setupRecyclerView()
-        requestApiData()
+        readDatabase()
         return binding.root;
+    }
+
+    private fun readDatabase() {
+        mainViewModel.readRecipes.observe(viewLifecycleOwner) { database ->
+            if (database.isNotEmpty()) {
+                mAdapter.setData(database[0].foodRecipe)
+                hideShimmerEffect()
+            }
+            else {
+                requestApiData()
+            }
+        }
     }
 
     private fun requestApiData()
