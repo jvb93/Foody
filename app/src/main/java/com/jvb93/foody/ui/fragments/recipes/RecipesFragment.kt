@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jvb93.foody.R
 import com.jvb93.foody.viewmodels.MainViewModel
 import com.jvb93.foody.adapters.RecipesAdapter
 import com.jvb93.foody.databinding.FragmentRecipesBinding
@@ -45,7 +47,7 @@ class RecipesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -54,7 +56,12 @@ class RecipesFragment : Fragment() {
 
         setupRecyclerView()
         readDatabase()
-        return binding.root;
+
+        binding.recipesFab.setOnClickListener {
+            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+        }
+
+        return binding.root
     }
     private fun setupRecyclerView(){
         binding.recyclerview.adapter = mAdapter

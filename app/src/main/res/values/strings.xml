@@ -5,4 +5,25 @@
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="main_course">Main Course</string>
+    <string name="side_dish">Side Dish</string>
+    <string name="dessert">Dessert</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="salad">Salad</string>
+    <string name="soup">Soup</string>
+    <string name="sauce">Sauce</string>
+    <string name="snack">Snack</string>
+    <string name="japanese">Japanese</string>
+    <string name="mediterranean">Mediterranean</string>
+    <string name="mexican">Mexican</string>
+    <string name="thai">Thai</string>
+    <string name="italian">Italian</string>
+    <string name="indian">Indian</string>
+    <string name="chinese">Chinese</string>
+    <string name="french">French</string>
+    <string name="greek">Greek</string>
+    <string name="american">American</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="apply">Apply</string>
 </resources>

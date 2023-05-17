@@ -22,7 +22,7 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
-            .build();
+            .build()
     }
 
     @Singleton
