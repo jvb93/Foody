@@ -5,7 +5,7 @@ import com.jvb93.foody.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
 
-abstract class RemoteDataSource @Inject constructor(
+class RemoteDataSource @Inject constructor(
     private val foodRecipesAPI: FoodRecipesAPI
 ) {
 

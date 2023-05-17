@@ -2,13 +2,15 @@ package com.jvb93.foody.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jvb93.foody.databinding.RecipesRowLayoutBinding
 import com.jvb93.foody.models.FoodRecipe
+import com.jvb93.foody.util.RecipesDiffUtil
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
 
-    private var recipe = emptyList<com.jvb93.foody.models.Result>()
+    private var recipes = emptyList<com.jvb93.foody.models.Result>()
 
     class MyViewHolder(private val binding: RecipesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,16 +34,18 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return recipe.size
+        return recipes.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentResult = recipe[position]
-        holder.bind(currentResult)
+        val currentRecipe = recipes[position]
+        holder.bind(currentRecipe)
     }
 
     fun setData(newData: FoodRecipe) {
-        recipe = newData.results
-        notifyDataSetChanged()
+        val recipesDiffUtil = RecipesDiffUtil(recipes, newData.results)
+        val difUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)
+        recipes = newData.results
+        difUtilResult.dispatchUpdatesTo(this)
     }
 }
