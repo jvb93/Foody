@@ -1,7 +1,7 @@
 package com.jvb93.foody.di
 
-import com.jvb93.foody.Constants.Companion.BASE_URL
-import com.jvb93.foody.FoodRecipesAPI
+import com.jvb93.foody.util.Constants.Companion.BASE_URL
+import com.jvb93.foody.data.network.FoodRecipesAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

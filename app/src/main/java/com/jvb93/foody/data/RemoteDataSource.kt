@@ -1,5 +1,6 @@
-package com.jvb93.foody
+package com.jvb93.foody.data
 
+import com.jvb93.foody.data.network.FoodRecipesAPI
 import com.jvb93.foody.models.FoodRecipe
 import retrofit2.Response
 import javax.inject.Inject
