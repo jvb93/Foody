@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jvb93.foody.MainViewModel
-import com.jvb93.foody.R
+import com.jvb93.foody.viewmodels.MainViewModel
 import com.jvb93.foody.adapters.RecipesAdapter
 import com.jvb93.foody.databinding.FragmentRecipesBinding
 import com.jvb93.foody.util.Constants.Companion.API_KEY
 import com.jvb93.foody.util.NetworkResult
+import com.jvb93.foody.viewmodels.RecipesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +24,7 @@ class RecipesFragment : Fragment() {
 
     private val mAdapter by lazy { RecipesAdapter() }
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var recipesViewModel: RecipesViewModel
 
     override fun onResume() {
         super.onResume()
@@ -35,7 +36,7 @@ class RecipesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
-        //recipesViewModel = ViewModelProvider(requireActivity())[RecipesViewModel::class.java]
+        recipesViewModel = ViewModelProvider(requireActivity())[RecipesViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -55,7 +56,7 @@ class RecipesFragment : Fragment() {
 
     private fun requestApiData()
     {
-        mainViewModel.getRecipes(applyQueries())
+        mainViewModel.getRecipes(recipesViewModel.applyQueries())
         mainViewModel.recipesResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResult.Success -> {
@@ -77,17 +78,6 @@ class RecipesFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun applyQueries() : HashMap<String, String>{
-        val queries: HashMap<String, String> = HashMap()
-        queries["number"] = "50"
-        queries["cuisine"] = "Mediterranean"
-        queries["apiKey"] = API_KEY
-        queries["addRecipeInformation"] = "true"
-        queries["fillIngredients"] = "true"
-
-        return queries
     }
     private fun setupRecyclerView(){
         binding.recyclerview.adapter = mAdapter
