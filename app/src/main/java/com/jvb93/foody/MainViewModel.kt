@@ -23,15 +23,16 @@ class MainViewModel @Inject constructor(private val repository: Repository, appl
     }
 
     private suspend fun getRecipesSafeCall(queries: Map<String, String>) {
+        recipesResponse.value = NetworkResult.Loading()
         if(hasInternetConnection())
         {
-
             try
             {
                 val response = repository.remote.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
-            }catch (e: java.lang.Exception){
-
+            } catch (e: Exception)
+            {
+                recipesResponse.value = NetworkResult.Error("Recipes not found")
             }
         }
         else
@@ -51,6 +52,13 @@ class MainViewModel @Inject constructor(private val repository: Repository, appl
             }
             response.body()!!.results.isNullOrEmpty() -> {
                 return NetworkResult.Error("No Recipes Found")
+            }
+            response.isSuccessful -> {
+                val foodRecipes = response.body()
+                return NetworkResult.Success(foodRecipes!!)
+            }
+            else -> {
+                return NetworkResult.Error(response.message())
             }
         }
     }
