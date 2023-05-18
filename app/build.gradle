@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'com.google.dagger.hilt.android'
-
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.jvb93.foody"
-        minSdk 23
+        minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -58,6 +58,8 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.46.1'
     implementation 'androidx.room:room-common:2.4.2'
     implementation 'androidx.room:room-ktx:2.4.2'
+    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
     kapt 'com.google.dagger:hilt-compiler:2.46.1'
 
 
@@ -74,3 +76,4 @@ dependencies {
 kapt {
     correctErrorTypes true
 }
+
